@@ -1,7 +1,3 @@
-"""
-My first game X & O
-"""
-
 # first of all take players name and make sure they give us their names
 
 # Players Names Section
@@ -22,7 +18,7 @@ while not player1:
 print("\n{} will play with 'X' \n{} wil play with 'O'".format(player1,player2))
 
 input("\n\nPress enter to start the game >_< \n")
-# just break to make sure the players have known their signs
+# just break to make sure the players have known their mark
 
 # Table Section
 def prinline(*args):
@@ -96,7 +92,7 @@ def game():
 
         # iffffffffffffffffs Sections
         # for every turn check for the num of the the position and if there O or X before
-        # then type player sign in it mv1 means players 1 turns
+        # then type player mark in it mv1 means players 1 turns
         # I will change it later to change who start the game according to the winner
         if mv1 == "9" and np["i9"] != "X" and np["i9"] != "O":
             np["i9"] = "X"
