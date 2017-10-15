@@ -1,2 +1,2 @@
-# X_and_O
-My first Game X &amp; O
+# Tic_Tac_Toe
+My first Game
