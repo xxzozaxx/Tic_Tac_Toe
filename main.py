@@ -1,3 +1,16 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+"""
+      __Author__: Ahmed khaled
+      __email__ = "ahmed_khaled@zoho.com"
+      __Last Update__: Wed Aug 15 17:32:20 EET 2018
+      __license__ = "GPLv3" please read LICENSE file
+      __maintainer__ = Abdallah Hesham
+
+a maintaining to Tic-tac-tao game in python.
+"""
+
+
 class TTT(object):
     """
     Tic-Tac-Tao class
