@@ -14,6 +14,28 @@ a Tic-tac-tao game written in python.
 # I will use these to handle errors
 
 
+class player(object):
+    """
+    Player track system
+    """
+    def __init__(self, name, score=0):
+        self.name = name
+        self.score = score
+        return 0
+
+    @property
+    def name(self):
+        return self.name
+
+    @property
+    def score(self):
+        return self.score
+
+    @score.setter
+    def score(self, value):
+        self._score = value
+
+
 class TTT(object):
     """
     Tic-Tac-Tao class
@@ -143,10 +165,10 @@ def playGame():
             print("%s Player win" % winner)
         else:
             return 1  # one here mean no one win
-        return 0
+    return 0
 
 
-    playGame()
+playGame()
 
 # TODO: Formalize the code and make main function
 # TODO: write TTT input function that show help or quite if user want
