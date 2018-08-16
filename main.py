@@ -7,7 +7,7 @@
       __license__ = "GPLv3" please read LICENSE file
       __maintainer__ = Abdallah Hesham
 
-a maintaining to Tic-tac-tao game in python.
+a Tic-tac-tao game written in python.
 """
 
 
@@ -18,21 +18,22 @@ class TTT(object):
     def __init__(self, player1, player2):
         self.player1 = player1
         self.player2 = player2
-        self.MAP = [
-            [1, 2, 3],
-            [4, 5, 6],
+        self.MAP = [                # MAP is the game board
+            [1, 2, 3],              # it is di-diamention list
+            [4, 5, 6],              # aka list of lists
             [7, 8, 9]
         ]
 
     def isWin(self):
         """
-        Take a map(list of lists)
-        return True if any list contain same element in row, col or X pattern
+        Take a Map(list of lists)
+        return True if any row, col or X pattern contain same element
+               otrherwise return the winner symbol (X or O)
         """
         def isEql(lst):
             """
             helper function which check every elemnt in the list is equal
-            return the Winner (X or O) if all element in the list is the same
+            return the True if all element in the list is the same
                    otherwise return False
             """
             for ele in lst[1:]:
@@ -54,17 +55,16 @@ class TTT(object):
                                  self.MAP[0],
                                  self.MAP[1],
                                  self.MAP[2]))) or \
-                                 list(filter(isEql, [x1MAP, x2MAP]))
-        # return(False) if not result else return(result[0][0])
+                 list(filter(isEql, [x1MAP, x2MAP]))
         return False if not result else result[0][0]
 
     def change(self, sym, place):
         """
-            Take a symbol(X or O)
-               & a place (number from 1-9 represent which place
-                          player want to play)
-            return a new Map with place replaced with symbol
-            """
+        Take a symbol(X or O)
+           & a place (number from 1-9 represent which place
+                      player want to play)
+        return a new Map with place replaced with symbol
+        """
         # first let's know which list of maps should we change
         # (aka, first row, snd or third)
         if place <= 3:
@@ -84,7 +84,6 @@ class TTT(object):
         I will draw it as open Box, may change later
         """
         # TODO: print new line
-
         for lst in self.MAP:
             print(' | '.join(map(str, lst)))
             pass
