@@ -9,15 +9,19 @@
 
 a Tic-tac-tao game written in python.
 """
+# return 0 mean succesful
+# reutrn 1 mean faild
+# I will use these to handle errors
 
 
 class TTT(object):
     """
     Tic-Tac-Tao class
     """
-    def __init__(self, player1, player2):
-        self.player1 = player1
-        self.player2 = player2
+    # def __init__(self, player1, player2):
+    def __init__(self):
+        # self.player1 = player1
+        # self.player2 = player2
         self.MAP = [                # MAP is the game board
             [1, 2, 3],              # it is di-diamention list
             [4, 5, 6],              # aka list of lists
@@ -27,8 +31,8 @@ class TTT(object):
     def isWin(self):
         """
         Take a Map(list of lists)
-        return True if any row, col or X pattern contain same element
-               otrherwise return the winner symbol (X or O)
+        return winner if any row, col or X pattern contain same element
+               otrherwise return False
         """
         def isEql(lst):
             """
@@ -93,6 +97,11 @@ class TTT(object):
 
 
 def playRound(game, player):
+    """
+    PlayRound funciton is impelemntation of 1 round play,
+              it take a TTT object and a number(0 mean X otherise mean O)
+              mutate TTT object's map
+    """
     game.draw()
     if player == 0:
         game.change('X',
@@ -107,26 +116,37 @@ def playRound(game, player):
 
 
 def playGame():
+    """
+    PlayGame is impelementation of a game, just one game
+             it basicly do the follow.
+             * init a TTT object.
+             * trak 1. round number to know that map has valid space
+                    2. game status aka: if player win or something else.
+             * use playRound function to get users input change map
+    """
     # get players names
-    player1 = input('X player name: ')
-    player2 = input("O player name: ")
+    # player1 = input('X player name: ')
+    # player2 = input("O player name: ")
 
     # init our game
-    game = TTT(player1, player2)
+    game = TTT()
     roundNum = 0    # To keep track the Round
     playerTurn = 0  # which player should play now
-    # while not game.isWin() and roundNum < 9:
     while game.isWin() is False and roundNum < 9:
         playRound(game, playerTurn)
         playerTurn = (playerTurn + 1) % 2
         pass
     else:
-        game.draw()
-        print("%s Player win" % game.isWin())
-    return 0
+        game.draw()            # Draw final result
+        winner = game.iswin()
+        if winner:             # chech if winner contain winner symbol or not
+            print("%s Player win" % winner)
+        else:
+            return 1  # one here mean no one win
+        return 0
 
 
-playGame()
+    playGame()
 
 # TODO: Formalize the code and make main function
 # TODO: write TTT input function that show help or quite if user want
