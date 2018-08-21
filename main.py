@@ -82,6 +82,7 @@ class TTT(object):
                                  self.MAP[1],
                                  self.MAP[2]))) or \
                  list(filter(isEql, [x1MAP, x2MAP]))
+        print(result)
         return False if not result else result[0][0]
 
     def change(self, sym, place):
@@ -169,17 +170,9 @@ def playGame():
             print("No winner")
             return 1  # one here mean no one win
 
+def gamedoc():
 
-def main():
-    # Take a user players
-    p1score = 0
-    p2score = 0
-    while True:
-        inp = input("\nenter\n    p: Play.\n    q: exit.\n    h: help & get score\n\n> ")
-        if inp in "qQ":
-            break
-        elif inp in "hH":
-            print("""
+    print("""
             read wikipedia page to learn more about game.
             our design will show you simple mape like
 
@@ -190,22 +183,33 @@ def main():
             and you should enter the number of place which you want to put your sym on it.
             after each turn score will show you like this (this is a real score in current game)
             """)
+    return 0
+
+
+def main():
+    # Take a user players
+    p1score = 0
+    p2score = 0
+    while True:
+        inp = input("\nenter\n    p: Play.\n    q: exit.\n    h: help & get score\n\n> ")
+        if inp in "qQ":
+            break
+        elif inp in "hH":
+            gamedoc()
             pass
         else:
             holder = playGame()  # it will hold the value of current game
-            if holder in "Xx":
+            if holder == "X":
                 p1score += 1
-            elif holder == "Oo":
+            elif holder == "O":
                 p2score += 1
+                print(p2score)
             else:
                 pass
-        print("Score\nX = {}, O = {}".format(p1score, p2score))
-    print("Final:\n    X: {}\n    O: {}".format(p1score, p2score))
+            print("Score\nX = {}, O = {}".format(p1score, p2score))
+            print("Final:\n    X: {}\n    O: {}".format(p1score, p2score))
     return 0
 
 
 if __name__ == "__main__":
     main()
-
-# TODO: write TTT input function that show help or quite if user want
-# TODO: make player score system and apply it
