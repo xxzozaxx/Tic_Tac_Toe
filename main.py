@@ -109,7 +109,7 @@ class TTT(object):
         and print it on the screen as gridl
         I will draw it as open Box, may change later
         """
-        # TODO: print new line
+        print("\n\n")
         for lst in self.MAP:
             print(' | '.join(map(str, lst)))
             pass
@@ -126,14 +126,19 @@ def playRound(game, player):
     """
     game.draw()
     if player == 0:
-        game.change('X',
-                    int(input("X player round: ")))
-    elif player == 1:
-        game.change('O',
-                    int(input("O player round: ")))
+        inpu = input("X player round: ")
+        if int(inpu) <= 9:
+            game.change('X',
+                        int(inpu))
+        else:
+            raise("invalid number. ")
     else:
-        print("invalid Player number")
-        return 1
+        inpu = input("O player round: ")
+        if int(inpu) <= 9:
+            game.change('O',
+                        int(inpu))
+        else:
+            raise("invalid number. ")
     return 0
 
 
@@ -146,30 +151,61 @@ def playGame():
                     2. game status aka: if player win or something else.
              * use playRound function to get users input change map
     """
-    # get players names
-    # player1 = input('X player name: ')
-    # player2 = input("O player name: ")
-
     # init our game
     game = TTT()
     roundNum = 0    # To keep track the Round
-    playerTurn = 0  # which player should play now
+    playerTurn = 0  # which player should play now, 0 mean X player, 1 mean O player
     while game.isWin() is False and roundNum < 9:
         playRound(game, playerTurn)
         playerTurn = (playerTurn + 1) % 2
         pass
     else:
         game.draw()            # Draw final result
-        winner = game.iswin()
+        winner = game.isWin()
         if winner:             # chech if winner contain winner symbol or not
             print("%s Player win" % winner)
+            return winner
         else:
+            print("No winner")
             return 1  # one here mean no one win
+
+
+def main():
+    # Take a user players
+    p1score = 0
+    p2score = 0
+    while True:
+        inp = input("\nenter\n    p: Play.\n    q: exit.\n    h: help & get score\n\n> ")
+        if inp in "qQ":
+            break
+        elif inp in "hH":
+            print("""
+            read wikipedia page to learn more about game.
+            our design will show you simple mape like
+
+            1 | 2 | 3
+            4 | 5 | 6
+            7 | 8 | 9
+
+            and you should enter the number of place which you want to put your sym on it.
+            after each turn score will show you like this (this is a real score in current game)
+            """)
+            pass
+        else:
+            holder = playGame()  # it will hold the value of current game
+            if holder in "Xx":
+                p1score += 1
+            elif holder == "Oo":
+                p2score += 1
+            else:
+                pass
+        print("Score\nX = {}, O = {}".format(p1score, p2score))
+    print("Final:\n    X: {}\n    O: {}".format(p1score, p2score))
     return 0
 
 
-playGame()
+if __name__ == "__main__":
+    main()
 
-# TODO: Formalize the code and make main function
 # TODO: write TTT input function that show help or quite if user want
 # TODO: make player score system and apply it
