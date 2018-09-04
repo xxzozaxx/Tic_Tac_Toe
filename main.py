@@ -1,49 +1,18 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""
-      __Author__: Ahmed khaled
-      __email__ = "ahmed_khaled@zoho.com"
-      __Last Update__: Wed Aug 15 17:32:20 EET 2018
-      __license__ = "GPLv3" please read LICENSE file
-      __maintainer__ = Abdallah Hesham
 
-a Tic-tac-tao game written in python.
-"""
 # return 0 mean succesful
 # reutrn 1 mean faild
 # I will use these to handle errors
-
-
-class player(object):
-    """
-    Player track system
-    """
-    def __init__(self, name, score=0):
-        self.name = name
-        self.score = score
-        return 0
-
-    @property
-    def name(self):
-        return self.name
-
-    @property
-    def score(self):
-        return self.score
-
-    @score.setter
-    def score(self, value):
-        self._score = value
+# TODO: make plater class
 
 
 class TTT(object):
     """
     Tic-Tac-Tao class
+    this class used to maintain TTT board and functions for it
     """
-    # def __init__(self, player1, player2):
     def __init__(self):
-        # self.player1 = player1
-        # self.player2 = player2
         self.MAP = [                # MAP is the game board
             [1, 2, 3],              # it is di-diamention list
             [4, 5, 6],              # aka list of lists
@@ -60,7 +29,7 @@ class TTT(object):
             """
             helper function which check every elemnt in the list is equal
             return the True if all element in the list is the same
-                   otherwise return False
+                   otherwise return Fals
             """
             for ele in lst[1:]:
                 if ele != lst[0]:
@@ -155,7 +124,7 @@ def playGame():
     # init our game
     game = TTT()
     roundNum = 0    # To keep track the Round
-    playerTurn = 0  # which player should play now, 0 mean X player, 1 mean O player
+    playerTurn = 0  # which player turn, 0 mean X player, 1 mean O player
     while game.isWin() is False and roundNum < 9:
         playRound(game, playerTurn)
         playerTurn = (playerTurn + 1) % 2
@@ -170,8 +139,8 @@ def playGame():
             print("No winner")
             return 1  # one here mean no one win
 
-def gamedoc():
 
+def gamedoc():
     print("""
             read wikipedia page to learn more about game.
             our design will show you simple mape like
